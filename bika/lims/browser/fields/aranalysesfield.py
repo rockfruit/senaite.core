@@ -122,7 +122,8 @@ class ARAnalysesField(ObjectField):
 
         # Prevent removing all Analyses
         if not items:
-            logger.warn("Not allowed to remove all Analyses from AR.")
+            if not instance.checkCreationFlag():
+                logger.warn("Not allowed to remove all Analyses from AR.")
             return new_analyses
 
         # Bail out if the items is not a list type

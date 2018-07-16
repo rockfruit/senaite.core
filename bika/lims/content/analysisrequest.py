@@ -3184,13 +3184,15 @@ class AnalysisRequest(BaseFolder):
         return ''
 
     def get_ARAttachment(self):
-        logger.warn("_ARAttachment is a virtual field used in AR Add. "
-                    "It can not hold an own value!")
+        if not self.checkCreationFlag():
+            logger.warn("_ARAttachment is a virtual field used in AR Add. "
+                        "It can not hold an own value!")
         return None
 
     def set_ARAttachment(self, value):
-        logger.warn("_ARAttachment is a virtual field used in AR Add. "
-                    "It can not hold an own value!")
+        if not self.checkCreationFlag():
+            logger.warn("_ARAttachment is a virtual field used in AR Add. "
+                        "It can not hold an own value!")
         return None
 
 

@@ -156,7 +156,9 @@ def get_variables(context, **kw):
             samplingDate = DT2dt(sampling_date)
         else:
             # No Sample Date?
-            logger.error("Sample {} has no sample date set".format(sample_id))
+            if not context.checkCreationFlag():
+                msg = "Sample {} has no sample date set".format(sample_id)
+                logger.error(msg)
             # fall back to current date
             samplingDate = DT2dt(date_now)
 
@@ -164,7 +166,9 @@ def get_variables(context, **kw):
             dateSampled = DT2dt(date_sampled)
         else:
             # No Sample Date?
-            logger.error("Sample {} has no sample date set".format(sample_id))
+            if not context.checkCreationFlag():
+                msg = "Sample {} has no sample date set".format(sample_id)
+                logger.error(msg)
             dateSampled = DT2dt(date_now)
 
         variables.update({
